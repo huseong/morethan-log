@@ -3,14 +3,17 @@ const CONFIG = {
   profile: {
     name: "Huseong Lee",
     image: "/avatar.jpg",
-    role: "Maker, Developer, Writer",
-    bio: "I develop everything using node.",
-    email: "huseong734@gmail.com"
+    role: "Creator, Developer, Writer",
+    bio: "Archive my life.",
+    email: "huseong734@gmail.com",
+    linkedin: "",
+    github: "",
+    instagram: "",
   },
   // blog setting (required)
   blog: {
-    title: "morethan-log",
-    description: "welcome to morethan-log!",
+    title: "H.Log",
+    description: "welcome to H.Log",
     theme: "auto", // ['light', 'dark', 'auto']
   },
 
