@@ -3,19 +3,10 @@ const CONFIG = {
   profile: {
     name: "Huseong Lee",
     image: "/avatar.jpg",
-    role: "frontend developer",
+    role: "Maker, Developer, Writer",
     bio: "I develop everything using node.",
-    email: "huseong734@gmail.com",
-    linkedin: "morethanmin",
-    github: "morethanmin",
-    instagram: "",
+    email: "huseong734@gmail.com"
   },
-  projects: [
-    {
-      name: `morethan-log`,
-      href: "https://github.com/morethanmin/morethan-log",
-    },
-  ],
   // blog setting (required)
   blog: {
     title: "morethan-log",
