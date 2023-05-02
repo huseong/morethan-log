@@ -30,6 +30,8 @@ const CONFIG = {
   notionConfig: {
     pageId: process.env.NOTION_PAGE_ID,
   },
+  projects: [
+  ],
 
   // plugin configuration (optional)
   googleAnalytics: {
