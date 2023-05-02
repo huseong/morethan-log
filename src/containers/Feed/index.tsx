@@ -7,6 +7,7 @@ import { TCategories, TPosts, TTags } from "@customTypes/index"
 import SearchInput from "./components/SearchInput"
 import { FeedHeader } from "./components/FeedHeader"
 import Footer from "./components/Footer"
+import {NewCategoryList} from "./components/lists";
 
 type Props = {
   categories: TCategories
@@ -32,7 +33,7 @@ const Feed: React.FC<Props> = ({ categories, tags, posts }) => {
           height: "calc(100vh - 73px)",
         }}
       >
-        {/* <Lists.CategoryList data={categories} /> */}
+          <NewCategoryList data={categories} />
         <Lists.TagList data={tags} />
       </div>
       <div className="col-span-12 lg:col-span-7">
