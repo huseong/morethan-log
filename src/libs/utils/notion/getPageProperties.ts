@@ -10,7 +10,7 @@ async function getPageProperties(
 ) {
   const api = new NotionAPI()
   const rawProperties = Object.entries(block?.[id]?.value?.properties || [])
-  const excludeProperties = ["date", "select", "multi_select", "person", "file"]
+  const excludeProperties = ["date", "select", "multi_select", "person", "file", "formula"]
   const properties: any = {}
   for (let i = 0; i < rawProperties.length; i++) {
     const [key, val]: any = rawProperties[i]

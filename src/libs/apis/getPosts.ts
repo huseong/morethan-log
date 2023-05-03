@@ -34,7 +34,6 @@ export async function getPosts() {
   const schema = collection?.schema
 
   const rawMetadata = block[id].value
-
   // Check Type
   if (
     rawMetadata?.type !== "collection_view_page" &&
@@ -54,6 +53,7 @@ export async function getPosts() {
       ).toString()
       properties.fullWidth =
         (block[id].value?.format as any)?.page_full_width ?? false
+      properties.slug = properties.title.toLowerCase().replaceAll(" ", "-").replaceAll(/[\{\}\[\]\/?.,;:|\)*~`!^_+<>@\#$%&\\\=\(\'\"]/g, "")
       data.push(properties)
     }
 

@@ -14,7 +14,9 @@ import {getCategoryHierarchyFromPosts} from "@libs/utils/notion/getCategoryMapFr
 export async function getStaticProps() {
   try {
     const posts = await getPosts()
+    console.log(posts)
     const filteredPost = filterPosts(posts)
+    console.log(filteredPost)
     const tags = getAllSelectItemsFromPosts("tags", filteredPost)
     const categories = getCategoryHierarchyFromPosts(filteredPost)
 

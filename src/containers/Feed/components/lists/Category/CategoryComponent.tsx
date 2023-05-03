@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import {TCategoryHierarchy} from "@/src/types";
 import {Collapse} from "@mui/material";
 import {ArrowDropDown, ArrowRight} from "@mui/icons-material";
 import {useRouter} from "next/router";
+import {getTheme} from "@hooks/useThemeEffect";
 
 export const CategoryComponent: React.FC<{
     categoryHierarchy: TCategoryHierarchy
@@ -11,7 +12,7 @@ export const CategoryComponent: React.FC<{
 }> = ({ categoryHierarchy, categoryName, depth }) => {
     const category = categoryHierarchy.map[categoryName]
     const isChildrenExist = category.children.length > 0
-    const [isChildrenOpen, setIsChildrenOpen] = useState(true)
+    const [isChildrenOpen, setIsChildrenOpen] = useState(isChildrenExist)
     const router = useRouter()
     const currentCategory = router.query.category || "All"
 
@@ -49,18 +50,16 @@ export const CategoryComponent: React.FC<{
                 <div
                     className={`w-6 h-6`}
                     onClick={(event) => {
-                        event.stopPropagation()
-                        setIsChildrenOpen(!isChildrenOpen)
+                        if (isChildrenExist) {
+                            event.stopPropagation()
+                            setIsChildrenOpen(!isChildrenOpen)
+                        }
                     }}
                 >
                     {
                         isChildrenOpen
-                            ? <ArrowDropDown style={{
-                                color: isChildrenExist ? '#000000' : '#00000022'
-                            }} />
-                            : <ArrowRight style={{
-                                color: isChildrenExist ? '#000000' : '#00000022'
-                            }} />
+                            ? <ArrowDropDown className={`${isChildrenExist ? 'opacity-100' : 'opacity-60'}`} />
+                            : <ArrowRight className={`${isChildrenExist ? 'opacity-100' : 'opacity-60'}`} />
                     }
                 </div>
                 <a>{categoryName}</a>
