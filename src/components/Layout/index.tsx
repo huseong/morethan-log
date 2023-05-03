@@ -19,8 +19,8 @@ const Layout: React.FC<Props> = ({
       <div className={`wrapper`}>
         {metaConfig.type !== "Paper" && <Header fullWidth={fullWidth} />}
         <main
-          className={`m-auto flex-grow w-full transition-all max-w-6xl px-4 ${
-            fullWidth && "px-4 md:px-24"
+          className={`m-auto flex-grow w-full transition-all max-w-7xl ${
+            fullWidth && "px-3 md:px-24"
           } ${metaConfig.type === "Paper" && "py-10"} `}
         >
           {children}

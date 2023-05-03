@@ -54,7 +54,6 @@ export async function getPosts() {
       ).toString()
       properties.fullWidth =
         (block[id].value?.format as any)?.page_full_width ?? false
-
       data.push(properties)
     }
 

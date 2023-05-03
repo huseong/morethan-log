@@ -6,16 +6,17 @@ import Layout from "@components/Layout"
 import Feed from "@containers/Feed"
 import { CONFIG } from "../../site.config"
 import { NextPageWithLayout } from "./_app"
-import { TCategories, TPosts, TTags } from "../types"
+import {TCategories, TCategoryHierarchy, TPosts, TTags} from "../types"
 import { getPosts } from "../libs/apis"
 import { DEFAULT_CATEGORY } from "../constants"
+import {getCategoryHierarchyFromPosts} from "@libs/utils/notion/getCategoryMapFromPosts";
 
 export async function getStaticProps() {
   try {
     const posts = await getPosts()
     const filteredPost = filterPosts(posts)
     const tags = getAllSelectItemsFromPosts("tags", filteredPost)
-    const categories = getAllSelectItemsFromPosts("category", filteredPost)
+    const categories = getCategoryHierarchyFromPosts(filteredPost)
 
     return {
       props: {
@@ -36,7 +37,7 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  categories: TCategories
+  categories: TCategoryHierarchy
   tags: TTags
   posts: TPosts
 }

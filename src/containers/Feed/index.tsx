@@ -3,14 +3,14 @@ import { useState } from "react"
 import * as Cards from "./components/cards"
 import * as Lists from "./components/lists"
 
-import { TCategories, TPosts, TTags } from "@customTypes/index"
+import {TCategories, TCategoryHierarchy, TPosts, TTags} from "@customTypes/index"
 import SearchInput from "./components/SearchInput"
 import { FeedHeader } from "./components/FeedHeader"
 import Footer from "./components/Footer"
 import {NewCategoryList} from "./components/lists";
 
 type Props = {
-  categories: TCategories
+  categories: TCategoryHierarchy
   tags: TTags
   posts: TPosts
 }
@@ -33,14 +33,13 @@ const Feed: React.FC<Props> = ({ categories, tags, posts }) => {
           height: "calc(100vh - 73px)",
         }}
       >
-          <NewCategoryList data={categories} />
+        <NewCategoryList data={categories} />
         <Lists.TagList data={tags} />
       </div>
       <div className="col-span-12 lg:col-span-7">
         <Cards.MobileProfileCard />
         <SearchInput value={q} onChange={(e) => setQ(e.target.value)} />
         <Lists.TagList className="block lg:hidden" data={tags} />
-        <FeedHeader categories={categories} />
         <Lists.PostList q={q} posts={posts} />
         <Footer className="block lg:hidden flex justify-center pb-8" />
       </div>

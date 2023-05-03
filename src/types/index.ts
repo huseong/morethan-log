@@ -7,7 +7,7 @@ export type TPost = {
   type: TPostType[]
   slug: string
   tags?: string[]
-  category?: string[]
+  categories?: string[]
   summary?: string
   author?: {
     id: string
@@ -28,6 +28,15 @@ export type TTags = {
 }
 export type TCategories = {
   [category: string]: number
+}
+export type TCategory = {
+  name: string,
+  children: string[],
+  count: number
+}
+export type TCategoryHierarchy = {
+  map: { [name: string]: { count: number, children: string[] } },
+  topLevelList: string[]
 }
 
 export type ThemeType = "dark" | "light"

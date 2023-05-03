@@ -42,7 +42,7 @@ type Props = {
 }
 
 const PostDetail: React.FC<Props> = ({ blockMap, data }) => {
-  const category = (data.category && data.category?.[0]) || undefined
+  const category = (data.categories && data.categories?.[0]) || undefined
 
   return (
     <div

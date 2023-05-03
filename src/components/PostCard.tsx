@@ -11,7 +11,7 @@ type Props = {
 }
 
 const PostCard: React.FC<Props> = ({ data }) => {
-  const category = (data.category && data.category?.[0]) || undefined
+  const { categories } = data
 
   return (
     <Link href={`/${data.slug}`}>
@@ -20,11 +20,17 @@ const PostCard: React.FC<Props> = ({ data }) => {
           key={data.id}
           className="relative overflow-hidden mb-6 md:mb-8 rounded-2xl bg-white dark:bg-zinc-700 hover:shadow-lg transition-shadow "
         >
-          {category && (
-            <Category className="absolute top-4 left-4 z-10">
-              {category}
-            </Category>
-          )}
+          {categories &&
+              <div className="absolute top-4 left-4 flex gap-2">
+                {categories.map((category: string, index: number) => (
+                    <Category
+                        key={index}
+                    >
+                      {category}
+                    </Category>
+                ))}
+              </div>
+          }
           {data.thumbnail && (
             <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700 ">
               <Image
@@ -36,7 +42,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
             </div>
           )}
           <div
-            className={["p-4", !data.thumbnail && category ? "pt-14" : ""].join(
+            className={["p-4", !data.thumbnail && categories ? "pt-14" : ""].join(
               " "
             )}
           >
