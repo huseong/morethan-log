@@ -37,10 +37,13 @@ export const CategoryComponent: React.FC<{
     return (
         <>
             <li
-                className={`text-sm p-1 pl-${depth * 2} px-2 my-1 flex rounded-xl text-gray-500 dark:text-white hover:bg-gray-200 dark:hover:bg-zinc-800 ${
+                className={`text-sm p-1 my-1 px-2 flex rounded-xl text-gray-500 dark:text-white hover:bg-gray-200 dark:hover:bg-zinc-800 ${
                     categoryName === currentCategory &&
                     "text-black bg-white dark:bg-zinc-700 hover:bg-white dark:hover:bg-zinc-700"
                 }`}
+                style={{
+                    paddingLeft: `${0.5 * depth}rem`
+                }}
                 onClick={() => handleClickCategory()}
             >
                 <div
