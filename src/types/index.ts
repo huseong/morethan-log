@@ -35,7 +35,7 @@ export type TCategory = {
   count: number
 }
 export type TCategoryHierarchy = {
-  map: { [name: string]: { count: number, children: string[] } },
+  map: { [name: string]: { name: string, count: number, children: string[] } },
   topLevelList: string[]
 }
 

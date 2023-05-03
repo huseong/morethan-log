@@ -3,21 +3,23 @@ import {TCategoryHierarchy} from "@/src/types";
 import {Collapse} from "@mui/material";
 import {ArrowDropDown, ArrowRight} from "@mui/icons-material";
 import {useRouter} from "next/router";
-import {getTheme} from "@hooks/useThemeEffect";
 
 export const CategoryComponent: React.FC<{
     categoryHierarchy: TCategoryHierarchy
-    categoryName: string
+    categoryKey: string
     depth: number
-}> = ({ categoryHierarchy, categoryName, depth }) => {
-    const category = categoryHierarchy.map[categoryName]
+}> = ({ categoryHierarchy, categoryKey, depth }) => {
+    const category = categoryHierarchy.map[categoryKey]
+    console.log(categoryKey)
+    console.log(categoryHierarchy)
+    const categoryName = category.name
     const isChildrenExist = category.children.length > 0
     const [isChildrenOpen, setIsChildrenOpen] = useState(isChildrenExist)
     const router = useRouter()
     const currentCategory = router.query.category || "All"
 
     const handleClickCategory = () => {
-        if (categoryName === currentCategory) {
+        if (categoryKey === currentCategory) {
             router.push({
                 query: {
                     ...router.query,
@@ -28,7 +30,7 @@ export const CategoryComponent: React.FC<{
             router.push({
                 query: {
                     ...router.query,
-                    category: categoryName,
+                    category: categoryKey,
                 },
             })
         }
@@ -38,12 +40,12 @@ export const CategoryComponent: React.FC<{
     return (
         <>
             <li
-                className={`text-sm p-1 my-1 px-2 flex rounded-xl text-gray-500 dark:text-white hover:bg-gray-200 dark:hover:bg-zinc-800 ${
-                    categoryName === currentCategory &&
+                className={`text-sm p-1 my-1 px-2 flex rounded-xl text-black dark:text-white hover:bg-gray-200 dark:hover:bg-zinc-800 ${
+                    categoryKey === currentCategory &&
                     "text-black bg-white dark:bg-zinc-700 hover:bg-white dark:hover:bg-zinc-700"
                 }`}
                 style={{
-                    paddingLeft: `${0.5 * depth}rem`
+                    paddingLeft: `${0.5 + 0.75 * (depth - 1)}rem`
                 }}
                 onClick={() => handleClickCategory()}
             >
@@ -62,7 +64,7 @@ export const CategoryComponent: React.FC<{
                             : <ArrowRight className={`${isChildrenExist ? 'opacity-100' : 'opacity-60'}`} />
                     }
                 </div>
-                <a>{categoryName}</a>
+                <a>{`${categoryName} (${category.count})`}</a>
             </li>
             <Collapse
                 in={isChildrenOpen} timeout="auto" unmountOnExit>
@@ -72,7 +74,7 @@ export const CategoryComponent: React.FC<{
                             return <CategoryComponent
                                 key={name}
                                 categoryHierarchy={categoryHierarchy}
-                                categoryName={name}
+                                categoryKey={name}
                                 depth={depth + 1}
                             />
                         })

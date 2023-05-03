@@ -38,7 +38,7 @@ const PostList: React.FC<Props> = ({ q, posts }) => {
       if (currentCategory !== DEFAULT_CATEGORY) {
         filteredPosts = filteredPosts.filter(
           (post) =>
-            post && post.categories && post.categories.includes(currentCategory)
+            post && post.categories && post.categories.join(',') === currentCategory
         )
       }
       // order

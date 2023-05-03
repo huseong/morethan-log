@@ -7,24 +7,28 @@ export function getCategoryHierarchyFromPosts(
     posts.forEach(post => {
         const { categories } = post
         categories?.forEach((category, index) => {
-            if (hierarchy.map[category]) {
-                hierarchy.map[category].count++
+            const key = categories?.slice(0, index + 1).join(',')
+            if (hierarchy.map[key]) {
+                hierarchy.map[key].count++
             } else {
-                hierarchy.map[category] = {
+                hierarchy.map[key] = {
+                    name: category,
                     count: 1,
                     children: []
                 }
                 if (index === 0) {
                     hierarchy.topLevelList.push(category)
                 }
-                const prev = hierarchy.map[categories[index - 1]]
+                const prevKey = categories?.slice(0, index).join(',')
+                const prev = hierarchy.map[prevKey]
                 if (prev) {
-                    prev.children.push(category)
+                    prev.children.push(key)
                 }
             }
         })
     })
     Object.values(hierarchy.map).forEach(v => v.children.sort())
     hierarchy.topLevelList.sort()
+    console.log(hierarchy)
     return hierarchy
 }

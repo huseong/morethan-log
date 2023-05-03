@@ -21,7 +21,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
           className="relative overflow-hidden mb-6 md:mb-8 rounded-2xl bg-white dark:bg-zinc-700 hover:shadow-lg transition-shadow "
         >
           {categories &&
-              <div className="absolute top-4 left-4 flex gap-2">
+              <div className="absolute top-4 left-4 flex gap-2 z-10">
                 {categories.map((category: string, index: number) => (
                     <Category
                         key={index}

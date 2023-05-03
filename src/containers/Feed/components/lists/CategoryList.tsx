@@ -22,7 +22,7 @@ const CategoryList: React.FC<Props> = ({ className, data }) => {
                         return <CategoryComponent
                             key={name}
                             categoryHierarchy={data}
-                            categoryName={name}
+                            categoryKey={name}
                             depth={1}
                         />
                     })
