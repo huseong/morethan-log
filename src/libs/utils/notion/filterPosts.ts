@@ -16,6 +16,7 @@ tomorrow.setHours(0, 0, 0, 0)
 
 export function filterPosts(posts: TPosts, options: Options = initialOption) {
   const { acceptStatus = ["Public"], acceptType = ["Post"] } = options
+  console.log(posts)
   const filteredPosts = posts
     // filter data
     .filter((post) => {
@@ -25,13 +26,11 @@ export function filterPosts(posts: TPosts, options: Options = initialOption) {
     })
     // filter status
     .filter((post) => {
-      const postStatus = post.status[0]
-      return acceptStatus.includes(postStatus)
+      return post.status && acceptStatus.includes(post.status[0])
     })
     // filter type
     .filter((post) => {
-      const postType = post.type[0]
-      return acceptType.includes(postType)
+      return post.type && acceptType.includes(post.type[0])
     })
   return filteredPosts
 }
