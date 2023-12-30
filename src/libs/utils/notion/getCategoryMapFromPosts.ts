@@ -29,6 +29,5 @@ export function getCategoryHierarchyFromPosts(
     })
     Object.values(hierarchy.map).forEach(v => v.children.sort())
     hierarchy.topLevelList.sort()
-    console.log(hierarchy)
     return hierarchy
 }
