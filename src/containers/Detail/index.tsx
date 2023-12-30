@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Detail: React.FC<Props> = ({ blockMap, data }) => {
-  useMermaidEffect()
+  // useMermaidEffect()
 
   return (
     <div>
