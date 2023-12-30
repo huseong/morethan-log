@@ -20,7 +20,7 @@
     "@mui/material": "^5.12.3",
     "axios": ">=0.21.1",
     "feed": "^4.2.2",
-    "mermaid": "^9.3.0",
+    "mermaid": "^10.6.1",
     "next": "^12.1.0",
     "notion-client": "^6.16.0",
     "notion-types": "^6.16.0",
