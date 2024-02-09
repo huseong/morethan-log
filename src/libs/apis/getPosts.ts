@@ -25,7 +25,10 @@ export async function getPosts() {
   }
 
   let id = CONFIG.notionConfig.pageId as string
-  const api = new NotionAPI()
+  const api = new NotionAPI({
+    activeUser: process.env.NOTION_ACTIVE_USER,
+    authToken: process.env.NOTION_TOKEN_V2
+  })
 
   const response = await api.getPage(id)
   id = idToUuid(id)
