@@ -10,8 +10,6 @@ export const CategoryComponent: React.FC<{
     depth: number
 }> = ({ categoryHierarchy, categoryKey, depth }) => {
     const category = categoryHierarchy.map[categoryKey]
-    console.log(categoryKey)
-    console.log(categoryHierarchy)
     const categoryName = category.name
     const isChildrenExist = category.children.length > 0
     const [isChildrenOpen, setIsChildrenOpen] = useState(isChildrenExist)
