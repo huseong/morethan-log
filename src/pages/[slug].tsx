@@ -26,6 +26,17 @@ export async function getStaticProps({ params: { slug } }: any) {
     const posts = await getPosts()
     const post = posts.find((t) => t.slug === slug)
     const blockMap = await getPostBlocks(post?.id!)
+    const signedURLMap: any = {}
+    for (const blockID in blockMap.block) {
+      const block = blockMap.block[blockID].value
+      if (block.type === 'video') {
+        const videoProperties = block.properties as any
+        if (videoProperties.source[0][0].includes('prod-files-secure.s3.us-west-2.amazonaws.com')) {
+          signedURLMap[blockID] = `https://huseong-blog-video.s3.ap-northeast-2.amazonaws.com/${videoProperties.title}`
+        }
+      }
+    }
+    blockMap.signed_urls = signedURLMap
 
     return {
       props: { post, blockMap },
