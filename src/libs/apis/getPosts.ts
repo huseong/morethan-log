@@ -52,7 +52,9 @@ export async function getPosts() {
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i]
       const properties = (await getPageProperties(id, block, schema)) || null
-      console.log(block[id])
+      if (!block[id]) {
+        continue
+      }
       // Add fullwidth, createdtime to properties
       properties.createdTime = new Date(
         block[id].value?.created_time
