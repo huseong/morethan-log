@@ -29,9 +29,6 @@ export async function getStaticProps({ params: { slug } }: any) {
     const signedURLMap: any = {}
     for (const blockID in blockMap.block) {
       const block = blockMap.block[blockID]
-      if (!block) {
-        continue
-      }
       const blockValue = block.value
       if (blockValue.type === 'video') {
         const videoProperties = blockValue.properties as any

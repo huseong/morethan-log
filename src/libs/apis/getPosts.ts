@@ -32,10 +32,12 @@ export async function getPosts() {
 
   const response = await api.getPage(id)
   id = idToUuid(id)
+  console.log(Object.values(response.collection)[0])
   const collection = Object.values(response.collection)[0]?.value
   const block = response.block
   const schema = collection?.schema
 
+  console.log(block[id])
   const rawMetadata = block[id].value
   // Check Type
   if (
@@ -50,6 +52,7 @@ export async function getPosts() {
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i]
       const properties = (await getPageProperties(id, block, schema)) || null
+      console.log(block[id])
       // Add fullwidth, createdtime to properties
       properties.createdTime = new Date(
         block[id].value?.created_time
