@@ -16,10 +16,11 @@ const PostList: React.FC<Props> = ({ q, posts }) => {
   const currentTag = `${router.query.tag || ``}` || undefined
   const currentCategory = `${router.query.category || ``}` || DEFAULT_CATEGORY
   const currentOrder = `${router.query.order || ``}` || "desc"
-
   useEffect(() => {
     setFilteredPosts(() => {
       let filteredPosts = posts
+      console.log(currentCategory)
+      console.log(filteredPosts)
       // keyword
       filteredPosts = filteredPosts.filter((post) => {
         const tagContent = post.tags ? post.tags.join(" ") : ""

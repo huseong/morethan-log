@@ -37,7 +37,6 @@ export async function getPosts() {
   const block = response.block
   const schema = collection?.schema
 
-  console.log(block[id])
   const rawMetadata = block[id].value
   // Check Type
   if (
