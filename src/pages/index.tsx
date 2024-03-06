@@ -15,7 +15,7 @@ export async function getStaticProps() {
   try {
     const posts = await getPosts()
     console.log(posts.length)
-    console.log(posts.filter(post => post.title?.includes('API')))
+    console.log(JSON.stringify(posts))
     const filteredPost = filterPosts(posts)
     const tags = getAllSelectItemsFromPosts("tags", filteredPost)
     const categories = getCategoryHierarchyFromPosts(filteredPost)
