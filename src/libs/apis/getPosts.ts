@@ -46,21 +46,20 @@ export async function getPosts() {
   } else {
     // Construct Data
     const pageIds = getAllPageIds(response)
-    console.log(pageIds)
+    console.log(pageIds.length)
     const data = []
     for (let i = 0; i < pageIds.length; i++) {
       const id = pageIds[i]
       const properties = (await getPageProperties(id, block, schema)) || null
-      if (!block[id]) {
-        continue
+      if (block[id]) {
+        // Add fullwidth, createdtime to properties
+        properties.createdTime = new Date(
+            block[id].value?.created_time
+        ).toString()
+        properties.fullWidth =
+            (block[id].value?.format as any)?.page_full_width ?? false
+        properties.slug = properties.title.toLowerCase().replaceAll(" ", "-").replaceAll(/[\{\}\[\]\/?.,;:|\)*~`!^_+<>@\#$%&\\\=\(\'\"]/g, "")
       }
-      // Add fullwidth, createdtime to properties
-      properties.createdTime = new Date(
-        block[id].value?.created_time
-      ).toString()
-      properties.fullWidth =
-        (block[id].value?.format as any)?.page_full_width ?? false
-      properties.slug = properties.title.toLowerCase().replaceAll(" ", "-").replaceAll(/[\{\}\[\]\/?.,;:|\)*~`!^_+<>@\#$%&\\\=\(\'\"]/g, "")
       data.push(properties)
     }
 
