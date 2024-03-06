@@ -19,8 +19,7 @@ export function filterPosts(posts: TPosts, options: Options = initialOption) {
   const filteredPosts = posts
     // filter data
     .filter((post) => {
-      const postDate = new Date(post?.date?.start_date || post.createdTime)
-      if (!post.title || !post.slug || postDate > tomorrow) return false
+      if (!post.title || !post.slug) return false
       return true
     })
     // filter status
