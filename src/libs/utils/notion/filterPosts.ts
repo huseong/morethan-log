@@ -19,20 +19,26 @@ export function filterPosts(posts: TPosts, options: Options = initialOption) {
   const filteredPosts = posts
     // filter data
     .filter((post) => {
-      if (!post.title) {
-        console.log(post)
+      if (!post.title || !post.slug) {
+          console.log(post)
+          return false
       }
-      if (!post.title || !post.slug) return false
       return true
     })
     // filter status
     .filter((post) => {
+        if (!(post.status && acceptStatus.includes(post.status[0]))) {
+            console.log(post)
+        }
       return post.status && acceptStatus.includes(post.status[0])
     })
     // filter type
     .filter((post) => {
+        if (!(post.type && acceptType.includes(post.type[0]))) {
+            console.log(post)
+        }
       return post.type && acceptType.includes(post.type[0])
     })
-  console.log(filteredPosts.length)
+    console.log(filteredPosts.length)
   return filteredPosts
 }
