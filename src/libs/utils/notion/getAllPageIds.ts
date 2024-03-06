@@ -7,7 +7,7 @@ export default function getAllPageIds(
 ) {
   const collectionQuery = response.collection_query
   const views = Object.values(collectionQuery)[0]
-
+  console.log(views)
   let pageIds: ID[] = []
   if (viewId) {
     const vId = idToUuid(viewId)
@@ -20,6 +20,9 @@ export default function getAllPageIds(
         pageSet.add(id)
       )
     })
+    console.log(views['5be2be25-a92f-4f5a-98ab-8b71f6750951'])
+    console.log('page set size')
+    console.log(pageSet.size)
     pageIds = [...pageSet]
   }
   return pageIds
