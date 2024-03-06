@@ -19,8 +19,6 @@ const PostList: React.FC<Props> = ({ q, posts }) => {
   useEffect(() => {
     setFilteredPosts(() => {
       let filteredPosts = posts
-      console.log(currentCategory)
-      console.log(filteredPosts)
       // keyword
       filteredPosts = filteredPosts.filter((post) => {
         const tagContent = post.tags ? post.tags.join(" ") : ""

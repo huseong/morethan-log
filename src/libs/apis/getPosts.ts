@@ -32,7 +32,6 @@ export async function getPosts() {
 
   const response = await api.getPage(id)
   id = idToUuid(id)
-  console.log(Object.values(response.collection)[0])
   const collection = Object.values(response.collection)[0]?.value
   const block = response.block
   const schema = collection?.schema

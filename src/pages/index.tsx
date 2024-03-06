@@ -15,6 +15,7 @@ export async function getStaticProps() {
   try {
     const posts = await getPosts()
     const filteredPost = filterPosts(posts)
+    console.log(filteredPost)
     const tags = getAllSelectItemsFromPosts("tags", filteredPost)
     const categories = getCategoryHierarchyFromPosts(filteredPost)
 
